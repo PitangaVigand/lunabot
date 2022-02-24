@@ -35,9 +35,9 @@ def select_person(scream,turn):
 
 def disselect_person(time_coords):
     for coord in time_coords:
-        pg.click(coord)
-        time.sleep(2)
-    return "ok"
+        pg.moveTo(coord)
+        pg.click()
+        time.sleep(2)    
 
 
 def fight(turn):
@@ -46,17 +46,21 @@ def fight(turn):
     time_coords = select_person(scream,turn)
     time.sleep(2)
     button = find_coord_to_click(scream, r"imgs\b_cacar_chefe.jpg" )
-    
-    for i in range(0,3):        
-        print("click")
+
+    #play 3 times
+    for i in range(0,3):
+        #caçar       
+        print("click1")
         pg.moveTo(button)
         pg.click()
         time.sleep(5)
-        print("click")
-        pg.moveTo(button[0]-350, button[1])
-        pg.click()        
-       
 
+        #move to midle
+        print("click2")
+        pg.moveTo(button[0]-350, button[1])
+        pg.click()       
+       
+        #clik in the midle
         for i in range(31):
             print(i)
             time.sleep(1)            
@@ -78,15 +82,15 @@ def fight(turn):
     #         #     continue
 
             
-        time.sleep(3)
-        print("click")
-        pg.moveTo(button)
-        pg.click()
+        # time.sleep(3)
+        # print("click3")
+        # pg.moveTo(button)
+        # pg.click()
     return time_coords
 
 
 def play():
-    for i in range(0,6):
+    for i in range(2,4):
         time_coords = fight(i)
         time.sleep(5)
         disselect_person(time_coords)
@@ -99,5 +103,5 @@ def play():
 # # start_boss()
 # # select_person()
 # # navegador = webbrowser.open(link)
-coor = fight(3)
+coor = play()
 # play()

@@ -9,7 +9,7 @@ import pyautogui as pg
 link = "https://app.lunarush.io/"
 seg = 2
 
-scream_path = "imgs\scream.jpg"
+screen_path = "imgs\screen.jpg"
 
 def find_coord_to_click(img_all, img_part):            
     part= cv2.imread(img_part,1)      
@@ -18,12 +18,12 @@ def find_coord_to_click(img_all, img_part):
     img_w,img_h = part.shape[1], part.shape[0] 
     return max_loc[0]+ img_w/2, max_loc[1]+img_h/2
 
-def select_person(scream,turn):
+def select_person(screen,turn):
     first = 0+3*turn
     last = first+3
     time_coords = []
     for i in range(first, last):
-        coord = find_coord_to_click(scream, "imgs\caracters\{0}.jpg".format(i))
+        coord = find_coord_to_click(screen, "imgs\caracters\{0}.jpg".format(i))
         print(coord)
         pg.moveTo(coord)
         pg.click()
@@ -39,13 +39,21 @@ def disselect_person(time_coords):
         pg.click()
         time.sleep(2)    
 
+def mouse_scroll():
+    screen = tela = cv2.imread(screen_path,1)
+    coord = find_coord_to_click(screen,r"imgs\guerreiro_para_mouse.jpg")
+    pg.click(coord)
+    pg.moveTo(coord[0],coord[1]+200)
+    time.sleep(2)
+    pg.scroll(-200)
 
 def fight(turn):
-    pg.screenshot(scream_path)
-    scream = tela = cv2.imread(scream_path,1) 
-    time_coords = select_person(scream,turn)
+    mouse_scroll()
+    pg.screenshot(screen_path)
+    screen = tela = cv2.imread(screen_path,1) 
+    time_coords = select_person(screen,turn)
     time.sleep(2)
-    button = find_coord_to_click(scream, r"imgs\b_cacar_chefe.jpg" )
+    button = find_coord_to_click(screen, r"imgs\b_cacar_chefe.jpg" )
 
     #play 3 times
     for i in range(0,3):
@@ -65,44 +73,24 @@ def fight(turn):
             print(i)
             time.sleep(1)            
             pg.click()
-            #pg.screenshot(scream_path)
-            # out = find_coord_to_click(scream, r"imgs\toque para continuar.jpg" )
-            # toque_para = find_coord_to_click(scream, r"imgs\toque_para_abrir.jpg" )
-            # if out:
-            #     print("click")   
-            #     pg.moveTo(out)
-            #     pg.click()
-            #     break
-            # elif toque_para:
-            #     print("click")   
-    #         #     pg.moveTo(toque_para)
-    #         #     pg.click()
-    #         #     break
-    #         # else:
-    #         #     continue
 
-            
-        # time.sleep(3)
-        # print("click3")
-        # pg.moveTo(button)
-        # pg.click()
     return time_coords
 
 
 def play():
-    for i in range(3,5):
+    for i in range(0,6):
         time_coords = fight(i)
         time.sleep(5)
         disselect_person(time_coords)
 
-# pg.screenshot(scream_path)
-# scream = tela = cv2.imread(scream_path,1)
-# select_person(scream)
+# pg.screenshot(screen_path)
+# screen = tela = cv2.imread(screen_path,1)
+# select_person(screen)
     
 # pg.print_function()
 # # start_boss()
 # # select_person()
 # # navegador = webbrowser.open(link)
 #coor = play()
-fight(0)
+fight(5)
 # play()

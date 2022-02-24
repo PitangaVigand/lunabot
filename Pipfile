@@ -7,6 +7,8 @@ name = "pypi"
 opencv-python = "*"
 pyautogui = "*"
 python3-xlib = "*"
+pillow = "*"
+pywin32 = "*"
 
 [dev-packages]
 black = "*"

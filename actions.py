@@ -90,7 +90,7 @@ def fight(turn):
 
 
 def play():
-    for i in range(2,4):
+    for i in range(3,5):
         time_coords = fight(i)
         time.sleep(5)
         disselect_person(time_coords)
@@ -103,5 +103,6 @@ def play():
 # # start_boss()
 # # select_person()
 # # navegador = webbrowser.open(link)
-coor = play()
+#coor = play()
+fight(0)
 # play()

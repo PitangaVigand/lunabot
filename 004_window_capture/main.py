@@ -14,7 +14,7 @@ os.chdir(os.path.dirname(os.path.abspath(__file__)))
 def window_capture():
     hwnd = win32gui.FindWindow(None, windowname)
 
-
+#https://learncodebygaming.com/blog/fast-window-capture
 
 
 

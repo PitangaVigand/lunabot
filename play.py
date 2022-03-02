@@ -1,6 +1,6 @@
 from mailbox import NotEmptyError
-from imgs.tools.tools import *
-from actions import action
+from tools.tools import *
+from tools.actions import action
 
 
 
@@ -10,12 +10,15 @@ def play():
         selection_done = None
         change_boss_done = None
         disselect_person_done = None
-        fight_done = None
+        hunt_boss_done = None
 
 
-        #getscrerrn
+        
         #if energia cheia 
+        if first_sceen:
             selection_done = action.select_person()
-        if done 
+        if self.select_person_done:
+            hunt_boss_done = action.hunt_boss()
+     
     
 

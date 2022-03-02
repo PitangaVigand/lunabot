@@ -1,17 +1,12 @@
-import os
+
 import time
-import webbrowser
-from calendar import c
 from datetime import date
 
 import cv2
-import numpy
-import pyautogui as pg
-import pygetwindow
-import win32gui, win32ui, win32con
 import numpy as np
-
-
+import pyautogui as pg
+import win32gui
+import win32ui
 
 #glabal varibles
 today = date.today()

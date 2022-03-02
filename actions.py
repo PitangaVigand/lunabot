@@ -1,3 +1,4 @@
+from calendar import c
 import os
 import time
 import webbrowser
@@ -76,6 +77,22 @@ def fight(turn):
 
     return time_coords
 
+def change_boss(screen):
+        part= cv2.imread(r"imgs\boss.jpg",1)      
+        result = cv2.matchTemplate(screen, part, cv2.TM_CCOEFF_NORMED)
+        min_val, max_val, min_loc, max_loc = cv2.minMaxLoc(result)
+        img_w,img_h = part.shape[1], part.shape[0]
+        
+        if max_val > .25:
+            co = find_coord_to_click(screen,r"imgs\boss.jpg")
+            pg.moveTo(co)
+            print("ok")
+
+    
+
+        # if find_coord_to_click() 
+        #     print("Boss")
+
 
 def play():
     for i in range(0,6):
@@ -83,14 +100,11 @@ def play():
         time.sleep(5)
         disselect_person(time_coords)
 
-# pg.screenshot(screen_path)
-# screen = tela = cv2.imread(screen_path,1)
-# select_person(screen)
-    
-# pg.print_function()
-# # start_boss()
-# # select_person()
-# # navegador = webbrowser.open(link)
-#coor = play()
-fight(5)
+
+# mouse_scroll()
+screen = tela = cv2.imread(screen_path,1) 
+# coor =select_person(screen,3)
+# disselect_person(coor)
+#fight(4)
 # play()
+change_boss(screen)

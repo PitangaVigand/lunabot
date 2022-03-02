@@ -1,5 +1,6 @@
 #from curses import window
 import os
+from tkinter import W
 
 from PIL import ImageGrab
 import cv2 as cv
@@ -24,7 +25,16 @@ def myscream():
     
     time_loop = time()
     while(True):
-        screenshot =  ImageGrab.grab()
+        w= 1920
+        h=1080
+        hwnd =  win32gui.FindWindow(None, "LunaRush - Google Chrome" )
+
+        #get the window image data
+        wDC = win32gui.GetWindow(hwnd)
+        dcObj = win32ui.CreateDCFromHandle(wDC)
+        dataBitMap = win32ui.CreateBitmap()
+        dataBitMap.CreateC
+
         screenshot =  np.array(screenshot)
         screenshot = cv.cvtColor(screenshot, cv.COLOR_RGB2BGR)
         
@@ -39,3 +49,5 @@ def myscream():
 
 
     print('done')
+
+    

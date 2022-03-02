@@ -1,0 +1,5 @@
+#schedule print
+#finish class
+#set varible screen to be the main vision
+#set everythint to interact with screen realtime
+#finish change boss

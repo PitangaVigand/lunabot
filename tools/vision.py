@@ -50,4 +50,6 @@ def myscream():
 
     print('done')
 
+myscream()
+
     

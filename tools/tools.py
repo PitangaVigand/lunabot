@@ -13,7 +13,7 @@ today = date.today()
 link = "https://app.lunarush.io/"
 seg = 2
 screen_path = "imgs\screen.jpg"
-
+screen = cv2.imread(screen_path,1)
 
 
 #functions
@@ -55,7 +55,7 @@ def mouse_scroll():
     pg.scroll(-200)
 
 
-def fight(turn):
+def fight():
     time.sleep(2)
     button = find_coord_to_click(screen, r"imgs\b_cacar_chefe.jpg" )
 
@@ -73,15 +73,15 @@ def fight(turn):
         pg.click()       
        
         #clik in the midle
-        for i in range(31):
+        for i in range(36):
             print(i)
             time.sleep(1)            
             pg.click()
 
-    return time_coords
+    return True
 
 
-def change_boss(screen):
+def select_boss(screen):
         part= cv2.imread(r"imgs\boss.jpg",1)      
         result = cv2.matchTemplate(screen, part, cv2.TM_CCOEFF_NORMED)
         min_val, max_val, min_loc, max_loc = cv2.minMaxLoc(result)
@@ -118,14 +118,12 @@ def get_screen():
     screenshot = cv2.cvtColor(screenshot, cv2.COLOR_RGB2BGR)
     return screen
 
+def start():
+    #open chrome on luna
+    #press play button
+    #login e senha
+    #caçar_chefe_bunner
+    
 
-
-
-
-# mouse_scroll()
-screen = tela = cv2.imread(screen_path,1) 
-# coor =select_person(screen,3)
-# disselect_person(coor)
-#fight(4)
-screen_day()
-#change_boss(screen)
+    
+    

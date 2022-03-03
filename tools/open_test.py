@@ -1,8 +1,6 @@
-from turtle import screensize
+
 import cv2
-import numpy as np
-import pyautogui as pg
-import time
+
 
 scream_path = "imgs\scream.jpg"
 #scream = pg.screenshot(scream_path)

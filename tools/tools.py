@@ -3,15 +3,11 @@ import time
 from datetime import date
 
 import cv2
-import numpy as np
 import pyautogui as pg
-import win32gui
-import win32ui
+
 
 #glabal varibles
 today = date.today()
-link = "https://app.lunarush.io/"
-seg = 2
 screen_path = "imgs\screen.jpg"
 screen = cv2.imread(screen_path,1)
 
@@ -22,110 +18,22 @@ def find_coord_to_click(img_all, img_part):
     result = cv2.matchTemplate(img_all, part, cv2.TM_CCOEFF_NORMED)
     min_val, max_val, min_loc, max_loc = cv2.minMaxLoc(result)
     img_w,img_h = part.shape[1], part.shape[0] 
-    if max_val < .9 :
+    if max_val < .85 :
         return False
 
     return max_loc[0]+ img_w/2, max_loc[1]+img_h/2 
 
-    
-def select_person(screen,turn):
-    first = 0+3*turn
-    last = first+3
-    time_coords = []
-    for i in range(first, last):
-        coord = find_coord_to_click(screen, "imgs\caracters\{0}.jpg".format(i))
-        print(coord)
-        pg.moveTo(coord)
-        pg.click()
-        time_coords.append(coord)        
-        time.sleep(2)
-    return time_coords
 
 
-def disselect_person(time_coords):
-    for coord in time_coords:
-        pg.moveTo(coord)
-        pg.click()
-        time.sleep(2)    
-
-
-def mouse_scroll():
-    screen = tela = cv2.imread(screen_path,1)
-    coord = find_coord_to_click(screen,r"imgs\guerreiro_para_mouse.jpg")
+def mouse_scroll(screen, team):    
+    coord = find_coord_to_click(screen,r"imgs\obj_guerreiro_para_mouse.jpg")
     pg.click(coord)
     pg.moveTo(coord[0],coord[1]+200)
     time.sleep(2)
-    pg.scroll(-200)
-
-
-def fight():
-    time.sleep(2)
-    button = find_coord_to_click(screen, r"imgs\b_cacar_chefe.jpg" )
-
-    #play 3 times
-    for i in range(0,3):
-        #caçar       
-        print("click1")
-        pg.moveTo(button)
-        pg.click()
-        time.sleep(5)
-
-        #move to midle
-        print("click2")
-        pg.moveTo(button[0]-350, button[1])
-        pg.click()       
-       
-        #clik in the midle
-        for i in range(45):
-            print(i)
-            time.sleep(1)            
-            pg.click()
-
-    return True
-
-def fight_complete():
-    time.sleep(2)
-    button = find_coord_to_click(screen, r"imgs\b_cacar_chefe.jpg" )
-
-    #play 3 times
-    for i in range(0,3):
-        #caçar       
-        print("click1")
-        pg.moveTo(button)
-        pg.click()
-        time.sleep(5)
-
-        #move to midle
-        print("click2")
-        pg.moveTo(button[0]-350, button[1])
-        pg.click()       
-       
-        #clik in the midle
-        for i in range(45):            
-            print(i)
-            time.sleep(1)
-
-            #make time stops
-            pg.screenshot(screen_path)
-            if find_coord_to_click(screen, r"imgs\b_cacar_chefe.jpg" ):
-
-                break  
-            if find_coord_to_click(screen, r"imgs\boss.jpg" ):
-                select_boss(screen)                 
-            pg.click()
-
-    return True
-
-def select_boss(screen):
-        part= cv2.imread(r"imgs\boss.jpg",1)      
-        result = cv2.matchTemplate(screen, part, cv2.TM_CCOEFF_NORMED)
-        min_val, max_val, min_loc, max_loc = cv2.minMaxLoc(result)
-        img_w,img_h = part.shape[1], part.shape[0]
-        
-        if max_val > .25:
-            co = find_coord_to_click(screen,r"imgs\boss.jpg")
-            pg.moveTo(co)
-            print("ok")
+    if int(team) == 3:
+        pg.scroll(-400)
+    else:
+        pg.scroll(400)
 
 
 def screen_day():
@@ -138,24 +46,12 @@ def screen_day():
     cv2.imwrite(name, cropped_image)
 
 
-def get_screen():
-    w= 1920
-    h=1080
-    hwnd =  win32gui.FindWindow(None, "LunaRush - Google Chrome" )
-
-    #get the window image data
-    wDC = win32gui.GetWindow(hwnd)
-    dcObj = win32ui.CreateDCFromHandle(wDC)
-    dataBitMap = win32ui.CreateBitmap()
-    dataBitMap.CreateC
-
-    screenshot =  np.array(screenshot)
-    screenshot = cv2.cvtColor(screenshot, cv2.COLOR_RGB2BGR)
-    return screen
-
 def start():
-    #open chrome on luna
+    #open chrome on luna link
+    #open_link(link)
+
     #press play button
     #login e senha
     #caçar_chefe_bunner
     return "ok"
+

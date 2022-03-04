@@ -1,36 +1,37 @@
-from mailbox import NotEmptyError
-from tools.tools import *
-from tools.actions import action
-from datetime import datetime
-import time
-import os
 
-def play_by_time():
+import os
+import time
+
+from tools.fight import *
+from tools.tools import *
+from tools.selection import *
+
+
+def play_by_time(range_team, energy):
     if not os.path.exists("screenshots day/{}.jpg".format(date.today())):
         screen_day()
     else:
         print("Screenshot already taken")
     
-    for team in range(0,1):
-        if team == 3:        
-            mouse_scroll()
-
+    for team in range(*range_team):
         pg.screenshot(screen_path)
-        screen = cv2.imread(screen_path,1) 
+        screen = cv2.imread(screen_path,1)
+        mouse_scroll(screen,team)
         time.sleep(2)
         coor = select_person(screen,team)
-        fight()
 
-        if team == 3:        
-            mouse_scroll()
-
+        fight_complete(screen,energy)               
+        mouse_scroll(screen,team) 
         disselect_person(coor)
      
-play_by_time()
+play_by_time((0,5),3)
 
 
 def play_by_vision():
-    
-    #using class
-    return "ok"
+    while True:
+
+
+        
+        #using class
+        return "ok"
 

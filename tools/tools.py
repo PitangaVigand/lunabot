@@ -22,7 +22,10 @@ def find_coord_to_click(img_all, img_part):
     result = cv2.matchTemplate(img_all, part, cv2.TM_CCOEFF_NORMED)
     min_val, max_val, min_loc, max_loc = cv2.minMaxLoc(result)
     img_w,img_h = part.shape[1], part.shape[0] 
-    return max_loc[0]+ img_w/2, max_loc[1]+img_h/2
+    if max_val < .9 :
+        return False
+
+    return max_loc[0]+ img_w/2, max_loc[1]+img_h/2 
 
     
 def select_person(screen,turn):
@@ -73,13 +76,45 @@ def fight():
         pg.click()       
        
         #clik in the midle
-        for i in range(36):
+        for i in range(45):
             print(i)
             time.sleep(1)            
             pg.click()
 
     return True
 
+def fight_complete():
+    time.sleep(2)
+    button = find_coord_to_click(screen, r"imgs\b_cacar_chefe.jpg" )
+
+    #play 3 times
+    for i in range(0,3):
+        #caçar       
+        print("click1")
+        pg.moveTo(button)
+        pg.click()
+        time.sleep(5)
+
+        #move to midle
+        print("click2")
+        pg.moveTo(button[0]-350, button[1])
+        pg.click()       
+       
+        #clik in the midle
+        for i in range(45):            
+            print(i)
+            time.sleep(1)
+
+            #make time stops
+            pg.screenshot(screen_path)
+            if find_coord_to_click(screen, r"imgs\b_cacar_chefe.jpg" ):
+
+                break  
+            if find_coord_to_click(screen, r"imgs\boss.jpg" ):
+                select_boss(screen)                 
+            pg.click()
+
+    return True
 
 def select_boss(screen):
         part= cv2.imread(r"imgs\boss.jpg",1)      
@@ -123,7 +158,4 @@ def start():
     #press play button
     #login e senha
     #caçar_chefe_bunner
-    
-
-    
-    
+    return "ok"

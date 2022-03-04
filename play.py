@@ -11,7 +11,7 @@ def play_by_time():
     else:
         print("Screenshot already taken")
     
-    for team in range(0,6):
+    for team in range(0,1):
         if team == 3:        
             mouse_scroll()
 
@@ -24,7 +24,7 @@ def play_by_time():
         if team == 3:        
             mouse_scroll()
 
-        disselect_person(coor)()
+        disselect_person(coor)
      
 play_by_time()
 

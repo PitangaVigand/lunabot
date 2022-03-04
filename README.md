@@ -1,6 +1,7 @@
-#Case study of computer vision.
+#Case study for computer vision pratice.
 
-Trying:
+Tutorials used: OpenCV Object Detection in Games by Learn Code By Gaming
+
     .OpenCV
     .pyautogui
     .win32gui

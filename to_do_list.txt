@@ -1,7 +1,9 @@
 #schedule print - ok
 #finish class
 #set varible screen to be the main vision
-#set everythint to interact with screen realtime
-#finish change boss
-#openluna chrome
-#logic to stop run
+#set everything to interact with screen realtime
+#finish change boss 
+#openluna chrome - ok
+#logic to stop run - ok
+#read daily number : https://pyimagesearch.com/2020/09/21/opencv-automatic-license-number-plate-recognition-anpr-with-python/
+#virtual varible

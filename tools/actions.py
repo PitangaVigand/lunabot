@@ -21,7 +21,7 @@ class action():
         
     def hunt_boss(self):
         time.sleep(2)
-        button = find_coord_to_click(screen, r"imgs\b_cacar_chefe.jpg" )
+        button = find_coord_to_click(screen, r"imgs\button_cacar_chefe.jpg" )
 
         #play 3 times
         for i in range(0,3):

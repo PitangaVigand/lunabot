@@ -36,6 +36,8 @@ def mouse_scroll(screen, team):
         pg.scroll(400)
 
 
+
+
 def screen_day():
     name = "screenshots day/{}.jpg".format(date.today())
     pg.screenshot(screen_path)

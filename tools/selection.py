@@ -29,3 +29,16 @@ def disselect_person(time_coords):
         pg.moveTo(coord)
         pg.click()
         time.sleep(2)
+
+
+
+def select_boss(screen):
+        part= cv2.imread(r"imgs\banner_boss.jpg",1)      
+        result = cv2.matchTemplate(screen, part, cv2.TM_CCOEFF_NORMED)
+        min_val, max_val, min_loc, max_loc = cv2.minMaxLoc(result)
+        img_w,img_h = part.shape[1], part.shape[0]
+        
+        if max_val > .25:
+            co = find_coord_to_click(screen,r"imgs\banner_boss.jpg")
+            pg.moveTo(co)
+            print("ok")

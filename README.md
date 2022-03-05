@@ -6,23 +6,22 @@ Case study for pratice of computer vision and automatization tasks
 #### Current features :
 	#Daly print of amount coin
 	#Play
-		#Select characters
-		#Fight
-		#Deselect characters		
-		#Change boss			
+	.Select characters
+	.Fight
+	.Deselect characters		
+	.Change boss			
 	#Openluna chrome 
 
 #### To-do features :
 	#Schedule plays
-	#Login from closed chrome
-	
+	#Login from closed chrome	
 
-### Future features:
+#### Future features:
 	#Commit everytime we've taken screenshot of the day
 	#Telegram bot
 	#Read daily coin : https://pyimagesearch.com/2020/09/21/opencv-automatic-license-number-plate-recognition-anpr-with-python/
 
-### Given off:
+#### Given off:
 	#finish class 
 	#set varible screen to be the main vision 
 	#set everything to interact with screen realtime

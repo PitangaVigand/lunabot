@@ -18,7 +18,7 @@ def find_coord_to_click(img_all, img_part):
     result = cv2.matchTemplate(img_all, part, cv2.TM_CCOEFF_NORMED)
     min_val, max_val, min_loc, max_loc = cv2.minMaxLoc(result)
     img_w,img_h = part.shape[1], part.shape[0] 
-    if max_val < .85 :
+    if max_val < .80 :
         return False
 
     return max_loc[0]+ img_w/2, max_loc[1]+img_h/2 
@@ -43,8 +43,7 @@ def mouse_scroll(screen, team):
 
 def screen_day():
     name = "screenshots day/{}.jpg".format(date.today())
-    pg.screenshot(screen_path)
-    screen = cv2.imread(screen_path,1)
+    screen = myscreen()
     coord = [int(x) for x in find_coord_to_click(screen,r"imgs\obj_coin.jpg")]
     print(coord)
     cropped_image = screen[coord[1]-15:coord[1]+15, coord[0]:coord[0]+100]
@@ -60,5 +59,22 @@ def start():
     #caçar_chefe_bunner
     return "ok"
 
-#def click(target):
+def click(target):
+    if isinstance(target, str):
+        coord = find_coord_to_click(screen,r"imgs\{0}.jpg".format(target))
+    else:
+        coord = target
 
+    pg.moveTo(coord)
+    time.sleep(1)
+    print("Click: {}".format(target))
+    pg.click()
+
+    return True
+
+
+#def push_git():
+def myscreen():
+    pg.screenshot(screen_path)
+    screen = cv2.imread(screen_path,1)
+    return screen

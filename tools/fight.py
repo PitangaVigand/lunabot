@@ -46,7 +46,7 @@ def fight_complete(screen,energy):
     for i in range(0,energy):
         #caçar 
         try:      
-            print("Click: caçar")
+            print("Click: Caçar")
             pg.moveTo(button)
             pg.click()            
         except Exception as e:
@@ -55,8 +55,8 @@ def fight_complete(screen,energy):
 
         #move to midle
         time.sleep(5)
-        print("Click: midle")
-        pg.moveTo(button[0]-350, button[1]+25)
+        print("Click: Midle")
+        pg.moveTo(button[0]-350, button[1]-25)
         pg.click()       
        
         #clik in the midle
@@ -64,18 +64,33 @@ def fight_complete(screen,energy):
             print(i)
             time.sleep(1)            
 
-            #make time stops
-            pg.screenshot(screen_path)
-            screen = cv2.imread(screen_path,1)
-            if find_coord_to_click(screen, r"imgs\button_cacar_chefe.jpg"):
+            #make time stops            
+            screen = myscreen()
+            toque_para = find_coord_to_click(screen, r"imgs\button_toque_para.jpg")
+            caçar_chefe = find_coord_to_click(screen, r"imgs\button_cacar_chefe.jpg")
+            banner_boss = find_coord_to_click(screen, r"imgs\banner_boss.jpg")
+            toque_para_continuar = find_coord_to_click(screen, r"imgs\button_toque_para_continuar.jpg")
+            toque_para_abrir = find_coord_to_click(screen, r"imgs\button_toque_para_abrir.jpg")
+
+            if toque_para:                
+                click(toque_para)
+            
+            if toque_para_abrir:                
+                click(toque_para_abrir)
+            
+            if toque_para_continuar:                
+                click(toque_para_continuar)
+
+            if caçar_chefe:
                 break  
 
-            if find_coord_to_click(screen, r"imgs\banner_boss.jpg"):
-                print("Click: boss")
-                select_boss(screen)
-                break 
-
-            pg.click()
+            if banner_boss:
+                boss = select_boss(screen)
+                if boss:
+                    break 
+            
+                        
+            #pg.click()
 
     return True
 

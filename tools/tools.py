@@ -27,13 +27,16 @@ def find_coord_to_click(img_all, img_part):
 
 def mouse_scroll(screen, team):    
     coord = find_coord_to_click(screen,r"imgs\obj_guerreiro_para_mouse.jpg")
-    pg.click(coord)
+    pg.moveTo(coord)
+    time.sleep(1)
+    pg.click()
     pg.moveTo(coord[0],coord[1]+200)
-    time.sleep(2)
+    time.sleep(1)
+    print("scroll")
     if int(team) == 3:
-        pg.scroll(-400)
+        pg.scroll(-600)
     else:
-        pg.scroll(400)
+        pg.scroll(600)
 
 
 
@@ -42,7 +45,7 @@ def screen_day():
     name = "screenshots day/{}.jpg".format(date.today())
     pg.screenshot(screen_path)
     screen = cv2.imread(screen_path,1)
-    coord = [int(x) for x in find_coord_to_click(screen,r"imgs\coin.jpg")]
+    coord = [int(x) for x in find_coord_to_click(screen,r"imgs\obj_coin.jpg")]
     print(coord)
     cropped_image = screen[coord[1]-15:coord[1]+15, coord[0]:coord[0]+100]
     cv2.imwrite(name, cropped_image)
@@ -56,4 +59,6 @@ def start():
     #login e senha
     #caçar_chefe_bunner
     return "ok"
+
+#def click(target):
 

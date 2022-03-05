@@ -17,14 +17,14 @@ def play_by_time(range_team, energy):
         pg.screenshot(screen_path)
         screen = cv2.imread(screen_path,1)
         mouse_scroll(screen,team)
-        time.sleep(2)
+        time.sleep(1)
         coor = select_person(screen,team)
 
         fight_complete(screen,energy)               
         mouse_scroll(screen,team) 
-        disselect_person(coor)
+        deselect_person(coor)
      
-play_by_time((0,5),3)
+play_by_time((4,5),3)
 
 
 def play_by_vision():

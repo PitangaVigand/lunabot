@@ -26,13 +26,13 @@ class action():
         #play 3 times
         for i in range(0,3):
             #caçar       
-            print("click1")
+            print("Click:1")
             pg.moveTo(button)
             pg.click()
             time.sleep(5)
 
             #move to midle
-            print("click2")
+            print("Click:2")
             pg.moveTo(button[0]-350, button[1])
             pg.click()       
         
@@ -61,7 +61,7 @@ class action():
         return True
 
 
-    def disselect_person(time_coords,self):
+    def deselect_person(time_coords,self):
         for coord in time_coords:
             pg.moveTo(coord)
             pg.click()

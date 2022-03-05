@@ -24,9 +24,10 @@ def select_person(screen,turn):
     return time_coords
 
 
-def disselect_person(time_coords):
-    for coord in time_coords:
+def deselect_person(time_coords):
+    for coord,i in enumerate(time_coords):
         pg.moveTo(coord)
+        print("Deselect: {0}}".format(i))
         pg.click()
         time.sleep(2)
 

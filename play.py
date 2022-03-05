@@ -14,17 +14,19 @@ def play_by_time(range_team, energy):
         print("Screenshot already taken")
     
     for team in range(*range_team):
-        pg.screenshot(screen_path)
-        screen = cv2.imread(screen_path,1)
+        screen = myscreen()        
         mouse_scroll(screen,team)
+        
         time.sleep(1)
-        coor = select_person(screen,team)
+        screen= myscreen() 
+        coord = select_person(screen,team)
 
-        fight_complete(screen,energy)               
+        fight_complete(screen,energy) 
+        screen= myscreen()              
         mouse_scroll(screen,team) 
-        deselect_person(coor)
+        deselect_person(coord)
      
-play_by_time((4,5),3)
+play_by_time((4,5),1)
 
 
 def play_by_vision():

@@ -3,6 +3,8 @@
 import time
 from tools.tools import *
 import pyautogui as pg
+import cv2 as cv2
+import pyautogui as pg
 
 
 def select_person(screen,turn):
@@ -12,24 +14,26 @@ def select_person(screen,turn):
     for i in range(first, last):
         
         #print(coord)
-        try:
-            coord = find_coord_to_click(screen, "imgs\caracters\{0}.jpg".format(i))
-            pg.moveTo(coord)
-            print("Select: {0}".format(i))
-            pg.click()
-            time_coords.append(coord)        
-            time.sleep(2)
-        except Exception as e:
-            print(e)
+       
+        coord = find_coord_to_click(screen, "imgs\caracters\{0}.jpg".format(i))
+        pg.moveTo(coord)
+        print("Select: {0}".format(i))
+        pg.click()
+        time_coords.append(coord)        
+        time.sleep(2)
+  
     return time_coords
 
 
 def deselect_person(time_coords):
-    for coord,i in enumerate(time_coords):
-        pg.moveTo(coord)
-        print("Deselect: {0}}".format(i))
-        pg.click()
-        time.sleep(2)
+    for i,coord in enumerate(time_coords):        
+        try:
+            pg.moveTo(coord)
+            print("Deselect: {0}".format(i))
+            pg.click()
+            time.sleep(2)
+        except Exception as e:
+            print(e)
 
 
 
@@ -40,6 +44,15 @@ def select_boss(screen):
         img_w,img_h = part.shape[1], part.shape[0]
         
         if max_val > .25:
-            co = find_coord_to_click(screen,r"imgs\banner_boss.jpg")
-            pg.moveTo(co)
-            print("ok")
+            coord = find_coord_to_click(screen,r"imgs\banner_boss.jpg")
+            pg.moveTo(coord)
+            time.sleep(2)
+            print("Click: Select boss")
+            pg.click()
+        return True
+
+# screen = myscreen()
+# coord = select_person(screen,3)
+
+# time.sleep(1)
+# deselect_person(coord)

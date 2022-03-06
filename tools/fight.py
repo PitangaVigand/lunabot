@@ -7,6 +7,7 @@ import pyautogui as pg
 
 from tools.tools import *
 from tools.selection import *
+from tools.buttons import *
 
 #glabal varibles
 screen_path = "imgs\screen.jpg"
@@ -66,12 +67,6 @@ def fight_complete(screen,energy):
 
             #make time stops            
             screen = myscreen()
-            toque_para = find_coord_to_click(screen, r"imgs\button_toque_para.jpg")
-            caçar_chefe = find_coord_to_click(screen, r"imgs\button_cacar_chefe.jpg")
-            banner_boss = find_coord_to_click(screen, r"imgs\banner_boss.jpg")
-            toque_para_continuar = find_coord_to_click(screen, r"imgs\button_toque_para_continuar.jpg")
-            toque_para_abrir = find_coord_to_click(screen, r"imgs\button_toque_para_abrir.jpg")
-
             if toque_para:                
                 click(toque_para)
             
@@ -94,4 +89,4 @@ def fight_complete(screen,energy):
 
     return True
 
-screen = cv2.imread(screen_path,1)
+# screen = cv2.imread(screen_path,1)

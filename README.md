@@ -1,5 +1,5 @@
 # LunaRush - bot 
-Case study for pratice of computer vision and automatization tasks 
+Case study for pratice of computer vision and automatization tasks.
 
 ## Workflow
 
@@ -14,11 +14,13 @@ Case study for pratice of computer vision and automatization tasks
 
 #### To-do features :
 	#Schedule plays
+	#Dashboard HTML
 	#Login from closed chrome	
 
 #### Future features:
 	#Commit everytime we've taken screenshot of the day
 	#Telegram bot
+	#Interface	
 	#Read daily coin : https://pyimagesearch.com/2020/09/21/opencv-automatic-license-number-plate-recognition-anpr-with-python/
 
 #### Given off:

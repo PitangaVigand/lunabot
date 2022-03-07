@@ -7,7 +7,7 @@ import pyautogui as pg
 
 from tools.tools import *
 from tools.selection import *
-from tools.buttons import *
+
 
 #glabal varibles
 screen_path = "imgs\screen.jpg"
@@ -63,10 +63,17 @@ def fight_complete(screen,energy):
         #clik in the midle
         for i in range(45):            
             print(i)
-            time.sleep(1)            
-
-            #make time stops            
+            time.sleep(1) 
             screen = myscreen()
+            toque_para = find_coord_to_click(screen, r"imgs\button_toque_para.jpg")
+            caçar_chefe = find_coord_to_click(screen, r"imgs\button_cacar_chefe.jpg")
+            banner_boss = find_coord_to_click(screen, r"imgs\banner_boss.jpg")
+            toque_para_continuar = find_coord_to_click(screen, r"imgs\button_toque_para_continuar.jpg",)
+            toque_para_abrir = find_coord_to_click(screen, r"imgs\button_toque_para_abrir.jpg")
+            toque_para_assistir = find_coord_to_click(screen, r"imgs\button_toque_para_assistir.jpg")          
+
+            #make time stops       
+            
             if toque_para:                
                 click(toque_para)
             
@@ -77,11 +84,13 @@ def fight_complete(screen,energy):
                 click(toque_para_continuar)
 
             if caçar_chefe:
+                print("breack caçar chefe")
                 break  
 
             if banner_boss:
                 boss = select_boss(screen)
                 if boss:
+                    print("Break boss")
                     break 
             
                         

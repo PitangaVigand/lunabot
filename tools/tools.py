@@ -25,7 +25,8 @@ def find_coord_to_click(img_all, img_part, threshold = .85):
 
 
 
-def mouse_scroll(screen, team):    
+def mouse_scroll(screen, team): 
+    time.sleep(1) 
     coord = find_coord_to_click(screen,r"imgs\obj_guerreiro_para_mouse.jpg")
     pg.moveTo(coord)
     time.sleep(1)

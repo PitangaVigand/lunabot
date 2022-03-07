@@ -12,7 +12,7 @@ def select_person(screen,turn):
     last = first+3
     time_coords = []
     for i in range(first, last):
-        time.sleep(1)
+        time.sleep(2)
         #print(coord)       
         coord = find_coord_to_click(screen, "imgs\caracters\{0}.jpg".format(i))
         pg.moveTo(coord)
@@ -25,16 +25,17 @@ def select_person(screen,turn):
 
 
 def deselect_person(time_coords):
-    time.sleep(2)
+    time.sleep(1)
     for i,coord in enumerate(time_coords):        
         try:
+            time.sleep(2)
             pg.moveTo(coord)
             print("Deselect: {0}".format(i))
             pg.click()
            
         except Exception as e:
             print(e)
-    time.sleep(1)
+  
 
 
 def select_boss(screen):
@@ -56,8 +57,13 @@ def select_boss(screen):
         # if find_coord_to_click(screen, r"ims\screen_seta.jpg"):
         #     click("button_seta")
         return True
-# screen = myscreen()
+screen = myscreen()
 # print(find_coord_to_click(screen,r"ims\screen_seta.jpg"),.7)
 
-# time.sleep(1)
+# # time.sleep(1)
+# coord = select_person(screen, 2)
+# deselect_person(coord)
+# mouse_scroll(screen,3)
+# screen = myscreen()
+# coord = select_person(screen, 3)
 # deselect_person(coord)

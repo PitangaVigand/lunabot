@@ -18,6 +18,7 @@ Case study for pratice of computer vision and automatization tasks.
 		
 #### To-do features :
 	#Telegram bot : https://www.geeksforgeeks.org/send-message-to-telegram-user-using-python/#:~:text=Open%20the%20telegram%20app%20and,which%20is%20your%20bot%20token.
+	#run in the background
 	#Dashboard HTML
 	#Login from closed chrome	
 

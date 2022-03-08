@@ -5,21 +5,24 @@ Case study for pratice of computer vision and automatization tasks.
 
 #### Current features :
 	#Daly print of amount coin
+	#schedule plays
+
+	#start
+	.open chrome with luna already logged before
+	
 	#Play
 	.Select characters
 	.Fight
 	.Deselect characters		
-	.Change boss			
-	#Openluna chrome 
-
+	.Change boss
+		
 #### To-do features :
-	#Schedule plays
+	#Telegram bot : https://www.geeksforgeeks.org/send-message-to-telegram-user-using-python/#:~:text=Open%20the%20telegram%20app%20and,which%20is%20your%20bot%20token.
 	#Dashboard HTML
 	#Login from closed chrome	
 
 #### Future features:
 	#Commit everytime we've taken screenshot of the day
-	#Telegram bot
 	#Interface	
 	#Read daily coin : https://pyimagesearch.com/2020/09/21/opencv-automatic-license-number-plate-recognition-anpr-with-python/
 

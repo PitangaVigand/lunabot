@@ -18,26 +18,22 @@ def start():
     #open chrome on luna link
     #open_link(link)
 	open_link("https://lunarush.io/")
-	time.sleep(5) 
-	  		
-  	#press play button
-	screen = myscreen()
-	click("button_play_now")
+	looking("button_play_now") 
 
-    #login e senha
+    #login
 	for i in range(25):	
 		print(i)		
 		time.sleep(1)
 		screen = myscreen()
 		if find_coord_to_click(screen, r"imgs\button_entrar_com_meta.jpg"):
-			click("button_entrar_com_meta")
+			click(screen,"button_entrar_com_meta")
 			break
-	
-	#caçar_chefe_bunner
-	select_boss()
-	play = True
-	return play
-# pg.moveTo(button)
-# time.sleep(1)
-# print("Click:Play")
-# pg.click() 
+
+		looking("button_entrar_com_meta")
+		looking("button_assinar")
+		over = looking("banner_cacar_chefe")
+		time.sleep(1)
+		if over == True:
+    			break
+
+

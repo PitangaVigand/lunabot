@@ -5,16 +5,22 @@ import time
 from tools.fight import *
 from tools.tools import *
 from tools.selection import *
+from start import *
+
 
 
 def play_by_time(range_team, energy):
+    screen = myscreen()
+    select_boss(screen)
+
     if not os.path.exists("screenshots day/{}.jpg".format(date.today())):
         screen_day()
     else:
         print("Screenshot already taken")
     
     for team in range(*range_team):
-        screen = myscreen()        
+        screen = myscreen()
+        time.sleep(1)        
         mouse_scroll(screen,team)
         
         time.sleep(1)
@@ -25,9 +31,10 @@ def play_by_time(range_team, energy):
         screen= myscreen()              
         mouse_scroll(screen,team) 
         deselect_person(coord)
-     
-play_by_time((0,5),1)
-
+        time.sleep(1)
+        
+    click(screen,"button_voltar")
+    print("The End")
 
 def play_by_vision():
     view = True
@@ -44,3 +51,10 @@ def play_by_vision():
             return
         view = False
 
+def complete_play_by_time():
+    start()
+    play_by_time((0,5),1)
+
+
+#complete_play_by_time()
+#play_by_time((3,5),1)

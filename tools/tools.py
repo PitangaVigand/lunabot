@@ -24,9 +24,8 @@ def find_coord_to_click(img_all, img_part, threshold = .85):
     return max_loc[0]+ img_w/2, max_loc[1]+img_h/2 
 
 
-
 def mouse_scroll(screen, team): 
-    time.sleep(1) 
+    time.sleep(2) 
     coord = find_coord_to_click(screen,r"imgs\obj_guerreiro_para_mouse.jpg")
     pg.moveTo(coord)
     time.sleep(1)
@@ -40,8 +39,6 @@ def mouse_scroll(screen, team):
         pg.scroll(600)
 
 
-
-
 def screen_day():
     name = "screenshots day/{}.jpg".format(date.today())
     screen = myscreen()
@@ -51,7 +48,7 @@ def screen_day():
     cv2.imwrite(name, cropped_image)
 
 
-def click(target):
+def click(screen=screen,target=1):
     if isinstance(target, str):
         coord = find_coord_to_click(screen,r"imgs\{0}.jpg".format(target))
     else:
@@ -61,7 +58,6 @@ def click(target):
     time.sleep(1)
     print("Click: {}".format(target))
     pg.click()
-
     return True
 
 
@@ -71,5 +67,28 @@ def myscreen():
     screen = cv2.imread(screen_path,1)
     return screen
 
+
 def count_energy():    
     return "ok"
+
+
+def open_warrios():
+    #time.sleep(3)
+    for i in range(0,5):
+        screen = myscreen()
+        click(screen,"button_seta")
+        break
+        print(i)
+
+def looking(target):    
+    for i in range(60):
+        time.sleep(.5)
+        if i % 5 == 0:
+            print("Loking for: {0} ...".format(target))       		
+        
+        screen = myscreen()
+        obj = find_coord_to_click(screen, r"imgs\{0}.jpg".format(target))
+        if obj:
+            click(screen,target)
+            break
+    return True 

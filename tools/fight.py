@@ -1,13 +1,10 @@
 
 import time
-from datetime import date
 
-import cv2
 import pyautogui as pg
 
-from tools.tools import *
 from tools.selection import *
-
+from tools.tools import *
 
 #glabal varibles
 screen_path = "imgs\screen.jpg"
@@ -68,23 +65,29 @@ def fight_complete(screen,energy):
             toque_para = find_coord_to_click(screen, r"imgs\button_toque_para.jpg")
             caçar_chefe = find_coord_to_click(screen, r"imgs\button_cacar_chefe.jpg")
             banner_boss = find_coord_to_click(screen, r"imgs\banner_boss.jpg")
-            toque_para_continuar = find_coord_to_click(screen, r"imgs\button_toque_para_continuar.jpg",)
+            toque_para_continuar = find_coord_to_click(screen, r"imgs\button_toque_para_continuar.jpg",.7)
             toque_para_abrir = find_coord_to_click(screen, r"imgs\button_toque_para_abrir.jpg")
-            toque_para_assistir = find_coord_to_click(screen, r"imgs\button_toque_para_assistir.jpg")          
+            toque_para_assistir = find_coord_to_click(screen, r"imgs\button_toque_para_assistir.jpg")
+            derrota = find_coord_to_click(screen, r"imgs\banner_derrota.jpg")
+            vitoria = find_coord_to_click(screen, r"imgs\banner_vitoria.jpg")  
+               
 
-            #make time stops       
-            
+            #make time stops            
             if toque_para:                
-                click(toque_para)
+                click(screen,toque_para)
             
             if toque_para_abrir:                
-                click(toque_para_abrir)
+                click(screen, toque_para_abrir)
             
             if toque_para_continuar:                
-                click(toque_para_continuar)
+                click(screen,toque_para_continuar)
+            
+            if derrota or vitoria:
+                ref = find_coord_to_click(screen, r"imgs\ref_toque.jpg")                 
+                click(screen,(int(ref[0]),int(ref[1]-100)))                                                 
 
             if caçar_chefe:
-                print("breack caçar chefe")
+                print("Break caçar chefe")
                 break  
 
             if banner_boss:

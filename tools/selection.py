@@ -7,18 +7,19 @@ import cv2 as cv2
 import pyautogui as pg
 
 def select_person(screen,turn):
-    time.sleep(1)
+    #time.sleep(1)
     first = 0+3*turn
     last = first+3
     time_coords = []
     for i in range(first, last):
-        time.sleep(2)
+        time.sleep(1)
         #print(coord)       
         coord = find_coord_to_click(screen, "imgs\caracters\{0}.jpg".format(i))
         pg.moveTo(coord)
         print("Select: {0}".format(i))
         pg.click()
-        time_coords.append(coord)        
+        time_coords.append(coord)
+        time.sleep(1)        
     time.sleep(1)   
   
     return time_coords
@@ -52,12 +53,12 @@ def select_boss(screen):
             print("Click: Select boss")
             pg.click()
 
-        # time.sleep(3)  
-        # screen = myscreen()
-        # if find_coord_to_click(screen, r"ims\screen_seta.jpg"):
-        #     click("button_seta")
+        time.sleep(3)        
+        print("open")
+        open_warrios()
+
         return True
-screen = myscreen()
+
 # print(find_coord_to_click(screen,r"ims\screen_seta.jpg"),.7)
 
 # # time.sleep(1)

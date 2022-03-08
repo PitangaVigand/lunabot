@@ -9,6 +9,7 @@ pyautogui = "*"
 python3-xlib = "*"
 pillow = "*"
 pywin32 = "*"
+schedule = "*"
 
 [dev-packages]
 black = "*"

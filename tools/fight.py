@@ -3,63 +3,58 @@ import time
 
 import pyautogui as pg
 
-from tools.selection import *
-from tools.tools import *
+from selection import *
+from tools import *
 
 #glabal varibles
 screen_path = "imgs\screen.jpg"
 
 
-def fight():
-    time.sleep(2)
-    button = find_coord_to_click(screen, r"imgs\button_cacar_chefe.jpg" )
 
-    #play 3 times
-    for i in range(0,3):
-        #caçar       
-        print("Click:1")
-        pg.moveTo(button)
-        pg.click()
-        time.sleep(5)
-
-        #move to midle
-        print("Click:2")
-        pg.moveTo(button[0]-350, button[1])
-        pg.click()       
-       
-        #clik in the midle
-        for i in range(45):
-            print(i)
-            time.sleep(1)            
-            pg.click()
-
-    return True
-
-
-def fight_complete(screen,energy):
+def fight(screen,energy,coord):
+    print("--------------------{0}-------------------".format(inspect.currentframe().f_code.co_name))
+    #set place of button
     time.sleep(1)
     button = find_coord_to_click(screen, r"imgs\button_cacar_chefe.jpg" )
 
-    #play 3 times
+    #fight 3 times with the same team
     for i in range(0,energy):
-        #caçar 
-        try:      
-            print("Click: Caçar")
-            pg.moveTo(button)
-            pg.click()            
-        except Exception as e:
-            print(e)
+        for i in range(45): #range try:          
+            time.sleep(1) 
+            try:      
+                print("Click: button_cacar_chefe")
+                pg.moveTo(button)
+                pg.click()
+                time.sleep(1)
+                screen = myscreen()
+
+                #check if 
+                # perceber = find_coord_to_click(screen, r"imgs\perceber.jpg")
+                # if perceber:
+                
+                #     print("No energy in fight!")
+                      #close perceber
+                #     time.sleep(3)#try
+                        #deselect_person(coord)
+                #     return False
+                # print("Continue .... 38 ")
+                           
+            except Exception as e:                
+                print(e, "in fight")
+                time.sleep(3)#try
+                continue
             break
 
-        #move to midle
-        time.sleep(5)
-        print("Click: Midle")
+    #click 
+        time.sleep(6)
+        print("----Start fight!")
         pg.moveTo(button[0]-350, button[1]-25)
         pg.click()       
        
-        #clik in the midle
-        for i in range(45):            
-            print(i)
+        #cheking screen for 45 secs
+                              
+        print("Fighting...")
+        for i in range(45): #range try screen: 
             time.sleep(1) 
             screen = myscreen()
             toque_para = find_coord_to_click(screen, r"imgs\button_toque_para.jpg")
@@ -83,22 +78,47 @@ def fight_complete(screen,energy):
                 click(screen,toque_para_continuar)
             
             if derrota or vitoria:
+                print("------Stop fight!")
                 ref = find_coord_to_click(screen, r"imgs\ref_toque.jpg")                 
                 click(screen,(int(ref[0]),int(ref[1]-100)))                                                 
 
-            if caçar_chefe:
-                print("Break caçar chefe")
+            if caçar_chefe:                
                 break  
 
             if banner_boss:
+                print("------Change boss!")
                 boss = select_boss(screen)
-                if boss:
-                    print("Break boss")
+                for i in range(0,3):
+                    time.sleep(2)
+                if boss:                    
                     break 
-            
-                        
-            #pg.click()
+
+            if i % 3 == 0:          
+                print("Fighting...")     
+    return True
+    
+
+def old_fight():
+    time.sleep(2)
+    button = find_coord_to_click(screen, r"imgs\button_cacar_chefe.jpg" )
+
+    #play 3 times
+    for i in range(0,3):
+        #caçar       
+        print("Click:1")
+        pg.moveTo(button)
+        pg.click()
+        time.sleep(3)#try
+
+        #move to midle
+        print("Click:2")
+        pg.moveTo(button[0]-350, button[1])
+        pg.click()       
+       
+        #clik in the midle
+        for i in range(45):#range try screen:
+            time.sleep(1)            
+            pg.click()
 
     return True
 
-# screen = cv2.imread(screen_path,1)

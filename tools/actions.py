@@ -2,7 +2,7 @@ import time
 
 import cv2
 import pyautogui as pg
-from tools.tools import *
+from tools import *
 
 class action():
     def select_person(screen,turn, self):

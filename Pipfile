@@ -10,6 +10,7 @@ python3-xlib = "*"
 pillow = "*"
 pywin32 = "*"
 schedule = "*"
+black = "*"
 
 [dev-packages]
 black = "*"

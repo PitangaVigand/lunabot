@@ -5,7 +5,11 @@ from datetime import date, datetime
 import cv2
 import pyautogui as pg
 import inspect
+from dotenv import load_dotenv
+import os
 
+load_dotenv(override=True)
+password = os.environ["PASSWORD"]
 
 # glabal varibles
 today = date.today()
@@ -14,7 +18,7 @@ screen = cv2.imread(screen_path, 1)
 
 
 # functions
-def find_coord_to_click(img_all, img_part, threshold=0.85):
+def find_coord_to_click(img_part, threshold=0.85):
     img_all = myscreen()
     try:
         part = cv2.imread(img_part, 1)
@@ -32,7 +36,7 @@ def find_coord_to_click(img_all, img_part, threshold=0.85):
 
 def mouse_scroll(screen, team):
     time.sleep(1)
-    coord = find_coord_to_click(screen, r"imgs\obj_guerreiro_para_mouse.jpg")
+    coord = find_coord_to_click(r"imgs\obj_guerreiro_para_mouse.jpg")
     pg.moveTo(coord)
     time.sleep(1)
     pg.click()
@@ -57,15 +61,15 @@ def screen_day():
         date.today(), datetime.now().strftime("%H")
     )
     screen = myscreen()
-    coord = [int(x) for x in find_coord_to_click(screen, r"imgs\obj_coin.jpg")]
+    coord = [int(x) for x in find_coord_to_click(r"imgs\obj_coin.jpg")]
     cropped_image = screen[coord[1] - 15 : coord[1] + 15, coord[0] : coord[0] + 100]
     cv2.imwrite(name, cropped_image)
 
 
-def click(screen=screen, target=1):
+def click(target=1):
     if isinstance(target, str):
         print("Click: {}".format(target))
-        coord = find_coord_to_click(screen, r"imgs\{0}.jpg".format(target))
+        coord = find_coord_to_click(r"imgs\{0}.jpg".format(target))
     else:
         print("Click: Toque para...")
         coord = target
@@ -86,12 +90,12 @@ def open_warrios():
     for i in range(0, 5):
         screen = myscreen()
         try:
-            if find_coord_to_click(screen, r"imgs\obj_guerreiro_para_mouse.jpg"):
+            if find_coord_to_click(r"imgs\obj_guerreiro_para_mouse.jpg"):
                 return True
             else:
                 time.sleep(1)
                 screen = myscreen()
-                click(screen, "button_seta")
+                click("button_seta")
                 continue
         except:
             time.sleep(5)
@@ -106,10 +110,18 @@ def looking(target, t=0.25):
             print("Looking for: {0} ...".format(target))
 
         screen = myscreen()
-        obj = find_coord_to_click(screen, r"imgs\{0}.jpg".format(target), 0.7)
+        obj = find_coord_to_click(r"imgs\{0}.jpg".format(target), 0.7)
         if obj:
-            click(screen, target)
+            click(target)
             return True
         else:
             continue
     return False
+
+
+def login():
+    looking("screen_senha")
+    time.sleep(1)
+    pg.typewrite(password)
+    time.sleep(1)
+    looking("button_desbloquear")

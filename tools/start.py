@@ -20,7 +20,8 @@ def open_link(link):
 
 
 def start():
-    if find_coord_to_click(screen, r"imgs\banner_boss.jpg"):
+    screen = myscreen()
+    if find_coord_to_click(r"imgs\banner_boss.jpg"):
 
         return True
 
@@ -48,13 +49,19 @@ def start():
         try_run = 5
         while True:
             if find_coord_to_click(
-                screen, r"imgs\screen_loading_1.jpg", 0.9
-            ) or find_coord_to_click(screen, r"imgs\screen_loading_2.jpg", 0.9):
+                r"imgs\screen_loading_1.jpg", 0.9
+            ) or find_coord_to_click(r"imgs\screen_loading_2.jpg", 0.9):
                 print("Loading...")
                 time.sleep(try_run)
                 continue
             else:
                 break
+
+        # login
+        screen = myscreen()
+        if find_coord_to_click(r"imgs\screen_senha.jpg"):
+            login()
+            time.sleep(1)
 
         for i in range(0, try_run):
             meta = looking("button_entrar_com_meta")

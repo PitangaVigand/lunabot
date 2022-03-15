@@ -11,6 +11,7 @@ screen_path = "imgs\screen.jpg"
 
 
 def fight(screen, energy, coord):
+
     print(
         "--------------------{0}-------------------".format(
             inspect.currentframe().f_code.co_name
@@ -18,7 +19,7 @@ def fight(screen, energy, coord):
     )
     # set place of button
     time.sleep(1)
-    button = find_coord_to_click(screen, r"imgs\button_cacar_chefe.jpg")
+    button = find_coord_to_click(r"imgs\button_cacar_chefe.jpg")
 
     # fight 3 times with the same team
     for i in range(0, energy):
@@ -30,17 +31,6 @@ def fight(screen, energy, coord):
                 pg.click()
                 time.sleep(1)
                 screen = myscreen()
-
-                # check if
-                # perceber = find_coord_to_click(screen, r"imgs\perceber.jpg")
-                # if perceber:
-
-                #     print("No energy in fight!")
-                # close perceber
-                #     time.sleep(3)#try
-                # deselect_person(coord)
-                #     return False
-                # print("Continue .... 38 ")
 
             except Exception as e:
                 print(e, "in fight")
@@ -59,36 +49,30 @@ def fight(screen, energy, coord):
         for i in range(45):  # range try screen:
             time.sleep(1)
             screen = myscreen()
-            toque_para = find_coord_to_click(screen, r"imgs\button_toque_para.jpg")
-            caçar_chefe = find_coord_to_click(screen, r"imgs\button_cacar_chefe.jpg")
-            banner_boss = find_coord_to_click(screen, r"imgs\banner_boss.jpg")
-            # toque_para_continuar = find_coord_to_click(screen, r"imgs\button_toque_para_continuar.jpg",.7)
-            # toque_para_abrir = find_coord_to_click(screen, r"imgs\button_toque_para_abrir.jpg")
-
-            derrota = find_coord_to_click(screen, r"imgs\banner_derrota.jpg")
-            vitoria = find_coord_to_click(screen, r"imgs\banner_vitoria.jpg")
+            toque_para = find_coord_to_click(r"imgs\button_toque_para.jpg")
+            caçar_chefe = find_coord_to_click(r"imgs\button_cacar_chefe.jpg")
+            banner_boss = find_coord_to_click(r"imgs\banner_boss.jpg")
+            toque_para_continuar = find_coord_to_click(
+                r"imgs\button_toque_para_continuar.jpg", 0.7
+            )
+            toque_para_abrir = find_coord_to_click(r"imgs\button_toque_para_abrir.jpg")
+            derrota = find_coord_to_click(r"imgs\banner_derrota.jpg")
+            vitoria = find_coord_to_click(r"imgs\banner_vitoria.jpg")
 
             # make time stops
             if toque_para:
-                click(screen, toque_para)
+                click(toque_para)
 
-            # if toque_para_abrir:
-            #     click(screen, toque_para_abrir)
+            if toque_para_abrir:
+                click(toque_para_abrir)
 
-            # if toque_para_continuar:
-            #     click(screen,toque_para_continuar)
+            if toque_para_continuar:
+                click(toque_para_continuar)
 
-            if derrota:
-                print("----Derrota!")
-                ref = find_coord_to_click(screen, r"imgs\ref_toque.jpg")
-                click(screen, (int(ref[0]), int(ref[1] - 100)))
-
-            if vitoria:
-                print("----Vitoria!")
-                looking("button_toque_para_abrir", 0.5)
-                time.sleep(1)
-                ref = find_coord_to_click(screen, r"imgs\ref_toque.jpg")
-                click(screen, (int(ref[0]), int(ref[1] - 100)))
+            if derrota or vitoria:
+                print("------Stop fight!")
+                ref = find_coord_to_click(r"imgs\ref_toque.jpg")
+                click((int(ref[0]), int(ref[1] - 100)))
 
             if caçar_chefe:
                 ("---Stop fiting!")
@@ -109,7 +93,7 @@ def fight(screen, energy, coord):
 
 def old_fight():
     time.sleep(2)
-    button = find_coord_to_click(screen, r"imgs\button_cacar_chefe.jpg")
+    button = find_coord_to_click(r"imgs\button_cacar_chefe.jpg")
 
     # play 3 times
     for i in range(0, 3):

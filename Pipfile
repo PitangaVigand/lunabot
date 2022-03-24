@@ -11,6 +11,8 @@ pillow = "*"
 pywin32 = "*"
 schedule = "*"
 black = "*"
+python-dotenv = "*"
+pytesseract = "*"
 
 [dev-packages]
 black = "*"

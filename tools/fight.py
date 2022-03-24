@@ -1,4 +1,5 @@
 import time
+from xmlrpc.client import Boolean
 
 import pyautogui as pg
 
@@ -6,98 +7,75 @@ from selection import *
 from tools import *
 
 
-# glabal varibles
-screen_path = "imgs\screen.jpg"
+def fight(energy: int) -> bool:
+    """Tap boss-hunt Button, wait until fight is
+    over and back to selection warrior screen
 
+    energy: Integer between 1-3;The amount of energy the team will play.
 
-def fight(screen, energy, coord):
+    """
 
     print(
         "--------------------{0}-------------------".format(
             inspect.currentframe().f_code.co_name
         )
     )
-    # set place of button
     time.sleep(1)
-    button = find_coord_to_click(r"imgs\button_cacar_chefe.jpg")
 
-    # fight 3 times with the same team
+    # fight "energy" times with the same team
     for i in range(0, energy):
-        for i in range(45):  # range try:
-            time.sleep(1)
-            try:
-                print("Click: button_cacar_chefe")
-                pg.moveTo(button)
-                pg.click()
-                time.sleep(1)
-                screen = myscreen()
-
-            except Exception as e:
-                print(e, "in fight")
-                time.sleep(3)  # try
-                continue
-            break
-
-        # click
-        time.sleep(6)
-        print("----Start fight!")
-        pg.moveTo(button[0] - 350, button[1] - 25)
-        pg.click()
+        looking("button_boss_hunt")
+        time.sleep(3)
+        print("----Starting energy:  {0}".format(i + 1))
 
         # cheking screen for 45 secs
-
-        for i in range(45):  # range try screen:
+        result = None
+        for j in range(45):  # range try screen:
             time.sleep(1)
-            screen = myscreen()
-            toque_para = find_coord_to_click(r"imgs\button_toque_para.jpg")
-            caçar_chefe = find_coord_to_click(r"imgs\button_cacar_chefe.jpg")
-            banner_boss = find_coord_to_click(r"imgs\banner_boss.jpg")
-            toque_para_continuar = find_coord_to_click(
-                r"imgs\button_toque_para_continuar.jpg", 0.7
-            )
-            toque_para_abrir = find_coord_to_click(r"imgs\button_toque_para_abrir.jpg")
-            derrota = find_coord_to_click(r"imgs\banner_derrota.jpg")
-            vitoria = find_coord_to_click(r"imgs\banner_vitoria.jpg")
+            boss_hunt = coords_of_target("button_boss_hunt")
+            banner_boss = coords_of_target("banner_boss")
+            derrota = coords_of_target("banner_defeat")
+            vitoria = coords_of_target("banner_vitoria")
 
-            # make time stops
-            if toque_para:
-                click(toque_para)
-
-            if toque_para_abrir:
-                click(toque_para_abrir)
-
-            if toque_para_continuar:
-                click(toque_para_continuar)
-
-            if derrota or vitoria:
-                print("------Stop fight!")
-                ref = find_coord_to_click(r"imgs\ref_toque.jpg")
-                click((int(ref[0]), int(ref[1] - 100)))
-
-            if caçar_chefe:
-                ("---Stop fiting!")
-                break
-
-            if banner_boss:
-                print("------Change boss!")
-                boss = select_boss(screen)
-                for i in range(0, 3):
+            # finish fight triggers
+            try:
+                if derrota:
+                    print("Defeat!")
                     time.sleep(2)
-                if boss:
+                    looking("button_tap_to_continue", threshold=0.6)
+                    result = True
+
+                if vitoria:
+                    print("Victory")
+                    time.sleep(1.5)
+                    looking("button_tap_to_open")
+                    time.sleep(2)
+                    looking("button_tap_to_continue", threshold=0.6)
+                    result = True
+
+                if boss_hunt and result:
                     break
 
-            if i % 4 == 0:
-                print("Fighting...")
+                if banner_boss and result:
+                    boss = select_boss()
+                    if boss:
+                        break
+
+            except Exception as e:
+                print(e)
+
+        print("---Finishing: energy {0}".format(i + 1))
     return True
 
 
 def old_fight():
+    """Deprecated"""
     time.sleep(2)
-    button = find_coord_to_click(r"imgs\button_cacar_chefe.jpg")
+    button = coords_of_target("button_boss_hunt")
 
     # play 3 times
     for i in range(0, 3):
-        # caçar
+        # hunt
         print("Click:1")
         pg.moveTo(button)
         pg.click()

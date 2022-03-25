@@ -6,15 +6,16 @@ import time
 from play import *
 
 
-def run_bot(function_to_run: function, energy: int, play_now: bool = False) -> None:
+def run_bot(function_to_run, energy: int, play_now: bool = False) -> None:
     """
     Run a specific function for
     """
+    print("------{0}-------------------".format(inspect.currentframe().f_code.co_name))
     if play_now:
         function_to_run(energy)
 
     # mark the schedule
-    schedule.every(energy * 1.5).hours.do(function_to_run)
+    schedule.every(energy * 1.5).hours.do(function_to_run, energy)
 
     while True:
         # Calculate point of time of next run
@@ -37,4 +38,4 @@ def run_bot(function_to_run: function, energy: int, play_now: bool = False) -> N
             continue
 
 
-run_bot(complete_play, 2, True)
+run_bot(complete_play, 3, False)

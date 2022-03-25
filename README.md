@@ -30,14 +30,14 @@ Repeats the steps every scheduled time.
 
 		
 ## Next features :
-	#Telegram bot
-	#run in the background
-	#Dashboard HTML
+	* Telegram bot
+	* run in the background
+	* Dashboard HTML
 
 ### Backlog of features:
-	#Commit every time we've taken screenshot of the day
-	#Interface	
-	#Read daily coin
+	* Commit every time we've taken screenshot of the day
+	* Interface	
+	* Read daily coin
 
 
 ## How to run:

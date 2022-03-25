@@ -73,8 +73,4 @@ def complete_play(energy: int) -> None:
                     looking("button_back")
                     start_try = None
                     break
-    print(
-        "---------{0} complete!-------------------".format(
-            inspect.currentframe().f_code.co_name
-        )
-    )
+    print("------------Finish!-------------------")

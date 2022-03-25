@@ -71,23 +71,28 @@ def screen_log() -> None:
 
 
 def click(target=None, t: float = 0.5) -> bool:
-    """Click on a target. The target can be
-    a coordinate or a file name"""
+    """Click on a target.
+
+    target: The target can be a coordinate or a file name
+    t: Secods between loops
+
+    """
     for i in range(5):
+
         try:
             if isinstance(target, str):
                 coord = coords_of_target(target)
-                print("Click: {}".format(target))
+                if target.startswith("button"):
+                    print("Click: {}".format(target))
             else:
                 print("...")
                 coord = target
-
-            time.sleep(t)
             pg.moveTo(coord)
-            time.sleep(1)
+            time.sleep(t)
             pg.click()
             return True
         except:
+            time.sleep(t)
             continue
     return False
 

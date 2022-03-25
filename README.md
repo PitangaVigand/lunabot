@@ -23,11 +23,10 @@ Repeats the steps every scheduled time.
 	* Play
 	.Select characters
 	.Fight
-	.Deselect characters		
-	.Change boss
+	.Change boss if necessary
+	.Deselect characters	
 
 	* Daily print of amount coin
-
 		
 ## Next features :
 	* Telegram bot

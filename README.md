@@ -2,7 +2,7 @@
 _Case study for practice of my python skills applyed 
 in a project to play LunaRush automaticly without
 humam intervention._
-> Most import python libraries:
+> Libraries:
 
 	* OpenCV 
 	* Pyaoutgui 

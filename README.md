@@ -1,33 +1,32 @@
 # Lunarush_bot - Idle RPG game
 _Case study for practice of my python skills applyed 
 in a project to play LunaRush automaticly without
-humam intervention. _
+humam intervention._
 > Most import python libraries:
-'''
-	OpenCV 
-	Pyaoutgui 
-	Schedule 
-	webbrowser
-	Subprocess
-	PyWin32
 
-'''
+	* OpenCV 
+	* Pyaoutgui 
+	* Schedule 
+	* webbrowser
+	* Subprocess
+	* PyWin32
+
 
 ## What the script does:
 Repeats the steps every scheduled time.
 
 #### Steps:
-	#start
+	* start
 	.Open chrome with Lunarush web site
 	.Login metamask wallet
 	
-	#Play
+	* Play
 	.Select characters
 	.Fight
 	.Deselect characters		
 	.Change boss
 
-	#Daily print of amount coin
+	* Daily print of amount coin
 
 		
 ## Next features :
@@ -42,10 +41,10 @@ Repeats the steps every scheduled time.
 
 
 ## How to run:
-'''
- Take print of your 15 characters and save on "imgs/characters" named as you order strategy between 0-14. 
- Install requirements
- run "tools\run_bot.py"
+
+ * Take print of your 15 characters and save on "imgs/characters" named as you order strategy between 0-14. 
+ * Install requirements
+ * run "tools\run_bot.py"
  
-'''
+
 

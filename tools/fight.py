@@ -25,20 +25,23 @@ def fight(energy: int) -> bool:
     # fight "energy" times with the same team
     for i in range(0, energy):
         looking("button_boss_hunt")
-        time.sleep(3)
         print("----Starting energy:  {0}".format(i + 1))
 
         # cheking screen for 45 secs
         result = None
-        for j in range(45):  # range try screen:
-            time.sleep(1)
+        for j in range(90):  # range try screen:
+            time.sleep(0.5)
             boss_hunt = coords_of_target("button_boss_hunt")
             banner_boss = coords_of_target("banner_boss")
             derrota = coords_of_target("banner_defeat")
             vitoria = coords_of_target("banner_vitoria")
+            tap_to_watch = coords_of_target("button_tap_to_watch", threshold=0.6)
 
             # finish fight triggers
             try:
+                if tap_to_watch:
+                    looking("button_tap_to_watch", threshold=0.6)
+
                 if derrota:
                     print("Defeat!")
                     time.sleep(2)

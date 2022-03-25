@@ -1,9 +1,9 @@
-import time
-from tools import *
-import pyautogui as pg
-import cv2 as cv2
-import pyautogui as pg
 import inspect
+import time
+
+import pyautogui as pg
+
+from tools import *
 
 
 def select_characters(team: int) -> list:

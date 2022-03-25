@@ -1,9 +1,10 @@
-from cProfile import run
-from schedule import *
-from tools import *
-import schedule
 import time
+
+import schedule
+from schedule import *
+
 from play import *
+from tools import *
 
 
 def run_bot(function_to_run, energy: int, play_now: bool = False) -> None:

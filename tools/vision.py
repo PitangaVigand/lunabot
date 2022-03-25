@@ -1,10 +1,7 @@
-#from curses import window
-import ctypes
+# from curses import window
+
 import os
 import time
-from ctypes import windll
-import time
-from tkinter import W
 
 import cv2 as cv
 import numpy as np
@@ -12,22 +9,23 @@ import pyautogui as pg
 import win32con
 import win32gui
 import win32ui
-from PIL import Image, ImageGrab
+from PIL import Image
 
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
 # def window_capture():
 #     hwnd = win32gui.FindWindow(None, windowname)
 
-#https://learncodebygaming.com/blog/fast-window-capture
+# https://learncodebygaming.com/blog/fast-window-capture
 
 
 luna = "LunaRush - Google Chrome"
-test = 'Slack'
+test = "Slack"
 
-def get_window_app(windowname):     
+
+def get_window_app(windowname):
     # define your monitor width and height
-    w, h = int(2056/2), 1980
+    w, h = int(2056 / 2), 1980
 
     # for now we will set hwnd to None to capture the primary monitor
     hwnd = win32gui.FindWindow(None, windowname)
@@ -43,11 +41,11 @@ def get_window_app(windowname):
     cDC.BitBlt((0, 0), (w, h), dcObj, (0, 0), win32con.SRCCOPY)
 
     # save the image as a bitmap file
-    #dataBitMap.SaveBitmapFile(cDC, 'debug.bmp')
+    # dataBitMap.SaveBitmapFile(cDC, 'debug.bmp')
 
     # convert the raw data into a format opencv can read
     signedIntsArray = dataBitMap.GetBitmapBits(True)
-    img = np.fromstring(signedIntsArray, dtype='uint8')
+    img = np.fromstring(signedIntsArray, dtype="uint8")
     img.shape = (h, w, 4)
 
     # free resources
@@ -62,9 +60,9 @@ def get_window_app(windowname):
     return img
 
 
-def get_window(windowname):     
+def get_window(windowname):
     # define your monitor width and height
-    hwnd_target = 0x1107f4
+    hwnd_target = 0x1107F4
 
     left, top, right, bot = win32gui.GetWindowRect(hwnd_target)
     w = right - left
@@ -86,11 +84,11 @@ def get_window(windowname):
     cDC.BitBlt((0, 0), (w, h), dcObj, (0, 0), win32con.SRCCOPY)
 
     # save the image as a bitmap file
-    #dataBitMap.SaveBitmapFile(cDC, 'debug.bmp')
+    # dataBitMap.SaveBitmapFile(cDC, 'debug.bmp')
 
     # convert the raw data into a format opencv can read
     signedIntsArray = dataBitMap.GetBitmapBits(True)
-    img = np.fromstring(signedIntsArray, dtype='uint8')
+    img = np.fromstring(signedIntsArray, dtype="uint8")
     img.shape = (h, w, 4)
 
     # free resources
@@ -105,19 +103,18 @@ def get_window(windowname):
     return img
 
 
-def get_window_chrome():    
-    hwnd_target = 0xa0778
+def get_window_chrome():
+    hwnd_target = 0xA0778
 
     left, top, right, bot = win32gui.GetWindowRect(hwnd_target)
     w = right - left
     h = bot - top
 
     win32gui.SetForegroundWindow(hwnd_target)
-    
 
     hdesktop = win32gui.GetDesktopWindow()
     hwndDC = win32gui.GetWindowDC(hdesktop)
-    mfcDC  = win32ui.CreateDCFromHandle(hwndDC)
+    mfcDC = win32ui.CreateDCFromHandle(hwndDC)
     saveDC = mfcDC.CreateCompatibleDC()
 
     saveBitMap = win32ui.CreateBitmap()
@@ -131,9 +128,8 @@ def get_window_chrome():
     bmpstr = saveBitMap.GetBitmapBits(True)
 
     im = Image.frombuffer(
-        'RGB',
-        (bmpinfo['bmWidth'], bmpinfo['bmHeight']),
-        bmpstr, 'raw', 'BGRX', 0, 1)
+        "RGB", (bmpinfo["bmWidth"], bmpinfo["bmHeight"]), bmpstr, "raw", "BGRX", 0, 1
+    )
 
     win32gui.DeleteObject(saveBitMap.GetHandle())
     saveDC.DeleteDC()
@@ -146,30 +142,31 @@ def get_window_chrome():
     #     im.save("test.png")
 
 
-def capture_opencv():    
+def capture_opencv():
     while True:
         loop = time()
         screenshot = np.array(pg.screenshot())
-        #screenshot = screenshot[:,:,::-1].copy() #fix color problem 
+        # screenshot = screenshot[:,:,::-1].copy() #fix color problem
         screenshot = cv.cvtColor(screenshot, cv.COLOR_RGB2BGR)
-        cv.imshow("Vision",screenshot)
-        print("FPS: {}".format(1/(time()- loop)))
-        if cv.waitKey(1) == ord('q'):
+        cv.imshow("Vision", screenshot)
+        print("FPS: {}".format(1 / (time() - loop)))
+        if cv.waitKey(1) == ord("q"):
             cv.destroyAllWindows()
             break
     print("Done")
 
 
-
-def capture_win_api():    
+def capture_win_api():
     while True:
         loop = time.time()
         screenshot = np.array(get_window_chrome())
         screenshot = cv.cvtColor(screenshot, cv.COLOR_RGB2BGR)
-        cv.imshow("Vision",screenshot)
-        print("FPS: {}".format(1/(time.time()- loop)))
-        if cv.waitKey(1) == ord('q'):
+        cv.imshow("Vision", screenshot)
+        print("FPS: {}".format(1 / (time.time() - loop)))
+        if cv.waitKey(1) == ord("q"):
             cv.destroyAllWindows()
             break
     print("Done")
+
+
 capture_win_api()

@@ -1,5 +1,4 @@
 import time
-from xmlrpc.client import Boolean
 
 import pyautogui as pg
 

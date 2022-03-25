@@ -1,12 +1,8 @@
-from datetime import date, datetime
-from tkinter import Button
-from tkinter.tix import Select
-from turtle import Screen
-import webbrowser
-import pyautogui as pg
-from tools import *
-from selection import *
 import time
+import webbrowser
+
+from selection import *
+from tools import *
 
 
 def open_link(link: str) -> None:

@@ -99,3 +99,7 @@ def select_boss() -> bool:
     if expand_area():
         return True
     return False
+
+
+# coords = select_characters(0)
+# deselect_characters(coords, 0)

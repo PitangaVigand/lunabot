@@ -5,6 +5,7 @@ from schedule import *
 
 from play import *
 from tools import *
+import cv2 as cv
 
 
 def run_bot(function_to_run, energy: int, play_now: bool = False) -> None:
@@ -32,11 +33,20 @@ def run_bot(function_to_run, energy: int, play_now: bool = False) -> None:
         # the call
         try:
             schedule.run_pending()
-            time.sleep(5)
+            time.sleep(1)
         except Exception as e:
             print(e, "  in run schedule")
             time.sleep(3)  # try
             continue
 
+        # Interations with external commands
+        key = cv.waitKey(1) & 0xFF
+        if key == ord("t") or key == ord("T"):
+            print(schedule.next_run().strftime("--------Next run %H:%M --------"))
+        elif key == ord("r"):
+            function_to_run(energy)
+        elif key == ord("s"):
+            break
 
-run_bot(complete_play, 3, False)
+
+run_bot(complete_play, 1, True)

@@ -30,12 +30,12 @@ def play(range_team: tuple, energy: int) -> bool:
                 print(e, "  Trying to select person...")
                 continue
 
-        fight_status = fight(energy)
+        # fight_status = fight(energy)
 
-        if not fight_status:
-            print("No fight in play!")
-            time.sleep(3)
-            return False
+        # if not fight_status:
+        #     print("No fight in play!")
+        #     time.sleep(3)
+        #     return False
 
         screen = myscreen()
         mouse_scroll(team)
@@ -66,7 +66,7 @@ def complete_play(energy: int) -> None:
         for i in range(0, 3):
             boss = select_boss()
             if boss:
-                play_turn = play((0, 5), energy)
+                play_turn = play((3, 5), energy)
                 time.sleep(1)
                 if play_turn:
                     screen_log()

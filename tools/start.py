@@ -73,4 +73,3 @@ def start():
 
             else:
                 time.sleep(try_run)
-                continue

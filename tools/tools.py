@@ -61,13 +61,14 @@ def mouse_scroll(team: int) -> None:
 def screen_log() -> None:
     """Take the screenshot of the current amount of coins"""
 
-    name = "screenshots day/{0}_{1}hs.jpg".format(
+    name = "screenshots_day/{0}_{1}hs.jpg".format(
         date.today(), datetime.now().strftime("%H")
     )
     screen = myscreen()
     coord = [int(x) for x in coords_of_target("obj_coin")]
     cropped_image = screen[coord[1] - 15 : coord[1] + 15, coord[0] : coord[0] + 100]
     cv2.imwrite(name, cropped_image)
+    upload_git("Log", name)
 
 
 def click(target=None, t: float = 0.5) -> bool:
@@ -170,7 +171,6 @@ def upload_git(commit_messege: str, file: str) -> bool:
     """
     etl_push = [
         "pwd",
-        "git checkout main",
         "git add {0}".format(file),  ################################################
         "git commit -m '{0}'".format(commit_messege),
         "git push",
